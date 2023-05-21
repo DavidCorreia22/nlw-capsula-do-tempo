@@ -1,0 +1,166 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root { /* root vai na raiz do site */
+  font-size: 16px; /* define o padrão do tamanho da fonte para o site */
+}
+
+/* define a largura da barra de rolagem */
+::-webkit-scrollbar {
+  width: 8px;
+  }
+/* cor de fundo da barra */
+::-webkit-scrollbar-track {
+  background-color: #2c2c31;
+}
+/* cor da barra de rolagem */
+::-webkit-scrollbar-thumb {
+  background-color: #9e9ea0;
+}
+
+@keyframes entering { /* cria animaçôes no site através de frames por meio de porcentagem*/
+  /* 30% { background-color: green;} - Modificar a cor da pagina - */ 
+  /* 78% { opacity: 0; } - opacidade */
+ /* ou por meio das palavras "from(sair)" e "To(para)", quando o cenario de um pra outro*/ 
+  from {
+    opacity: 0;
+    transform: translateY(-200px); /* o "Y" manipula a animação na vertical e o "-220px par vim fora da tela*/
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0); /* e o "0" para voltar a posicão original */
+  }
+}
+
+body {
+  background-color: #121215;
+  color:#eaeaea;
+  font-family: 'roboto', sans-serif;
+  display: grid;
+  grid-template-areas: "profile timeline";
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 100vh;
+}
+
+nav {
+  padding: 64px;
+  grid-area: timeline;
+
+  overflow-y: scroll; /* define que só a Nav vai ter uma barra de rolagem */
+  animation: entering 0.7s ease-in-out; /* duração da animação no inicio do site */
+}
+
+
+.memory {
+  display:flex;
+  flex-direction: column;
+  gap: 16px;
+  text-decoration: none;
+  margin-bottom: 64px;
+}
+
+.memory small {
+  color:#bebebf;
+  font-size: 1rem; /* rem - renderiza o tamanho determinado no root como referência*/
+}
+
+.memory h1 {
+  font-size: 2rem;
+  color:#eaeaea;
+}
+
+.memory img {
+  width: 100%;
+  height: 400px;
+  object-fit: cover;
+  border-radius: 8px;
+  transition: transform 0.3s ease-in-out; /* efeito de transição suave */
+  }
+
+  .memory div { /* efeito de zoom sem alterar o tamanho da imagem */
+    width: 100%;
+    height: 400px;
+    overflow: hidden;
+    border-radius: 8px;
+  }
+
+.memory:hover img { /* efeito de zoom na imagem */
+  transform: scale(1.1);
+}  
+
+.memory p {
+  font-size: 1.2rem;
+  color: #bebebf;
+  line-height: 28px ;
+}
+
+aside { 
+  grid-area: profile; /* dividi a tela em caixas */
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap:20px;
+
+  border-right: 1px solid;
+  border-image: linear-gradient(#727275, #2c2c31) 1;
+
+  background-image: url("./assets/background.svg");
+  background-position: top right;
+  background-repeat: no-repeat;
+  background-size: auto 100%;
+
+}
+
+aside * {
+  animation: entering 0.7s ease-in-out;
+}
+
+aside img:nth-child(2) {
+    width: 160px;
+    height: 160px;
+    border-radius: 50%;
+    border: 4px solid transparent;
+    background: linear-gradient(#d39e33,#ed9e33, #633bbc ) padding-box,
+    linear-gradient(260deg, #d39e33,#ed9e33, #633bbc ) border-box;
+}
+
+aside p {
+  font-size: 2rem;
+  text-align: center;
+}
+
+aside span {
+  font-size: 0.75rem;
+  color:#9e9ea0;
+}
+
+@media (max-width: 768px) { /* quando a largura chegar 768px aplicar as alterações */
+  :root {
+    font-size: 14px; 
+  }
+ 
+ 
+  body {
+    grid-template-columns: 1fr; /* determina uma só coluna */
+    grid-template-rows: 0.2fr 0.8fr;
+    grid-template-areas: /* define a ordem dos grids */
+    "profile"
+    "timeline";
+  }
+
+  aside {
+    border-right: none; /* tirar a borda de divisão do site*/
+    padding: 32px 12px; /* espaçamento interno */
+  }
+
+  nav {
+    overflow-y: visible; /* deixa a barra de rolagem para toda tela*/
+    padding: 22px;
+  }
+
+}
