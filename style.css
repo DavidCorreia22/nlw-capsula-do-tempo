@@ -124,7 +124,8 @@ aside * {
   animation: entering 0.7s ease-in-out;
 }
 
-aside img:nth-child(1) {
+aside img {
+  /* o nth-child() qual filho qual filho(imagem) eu quero mexer na div*/
   width: 160px;
   height: 160px;
   border-radius: 50%;
